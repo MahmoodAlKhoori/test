@@ -30,7 +30,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   addSupplier: (supplierData) => {
     const newSupplier: Supplier = {
       ...supplierData,
-      id: crypto.randomUUID(),
+      id: Math.random().toString(36).substring(2) + Date.now().toString(36),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     }
@@ -49,7 +49,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     const average = calculateWeightedAverage(serviceData.scores)
     const newService: Service = {
       ...serviceData,
-      id: crypto.randomUUID(),
+      id: Math.random().toString(36).substring(2) + Date.now().toString(36),
       supplierSecurityPrioritization: getRiskLevel(average),
       reviewFrequency: getReviewFrequency(average),
       createdAt: new Date().toISOString(),
@@ -111,8 +111,8 @@ export const useAppStore = create<AppState>((set, get) => ({
     const existingSuppliers = get().suppliers
     if (existingSuppliers.length > 0) return // Don't seed if data already exists
 
-    const microsoftId = crypto.randomUUID()
-    const awsId = crypto.randomUUID()
+    const microsoftId = Math.random().toString(36).substring(2) + Date.now().toString(36)
+    const awsId = Math.random().toString(36).substring(2) + Date.now().toString(36)
 
     const dummySuppliers: Supplier[] = [
       {
@@ -124,7 +124,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         additionalUrls: ["portal.microsoft.com", "admin.microsoft.com", "security.microsoft.com"],
         services: [
           {
-            id: crypto.randomUUID(),
+            id: Math.random().toString(36).substring(2) + Date.now().toString(36),
             description:
               "Microsoft Office 365 - Cloud productivity suite including email, document collaboration, and communication tools",
             businessUnit: "IT Operations",
@@ -152,7 +152,7 @@ export const useAppStore = create<AppState>((set, get) => ({
             updatedAt: "2025-08-10T00:00:00.000Z",
           },
           {
-            id: crypto.randomUUID(),
+            id: Math.random().toString(36).substring(2) + Date.now().toString(36),
             description: "Microsoft Viva Insights - Employee analytics and productivity insights platform",
             businessUnit: "Human Resources",
             scores: {
@@ -202,7 +202,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         additionalUrls: ["console.aws.amazon.com", "signin.aws.amazon.com", "support.aws.amazon.com"],
         services: [
           {
-            id: crypto.randomUUID(),
+            id: Math.random().toString(36).substring(2) + Date.now().toString(36),
             description: "AWS S3 - Cloud object storage service for backup and archival of business documents",
             businessUnit: "IT Infrastructure",
             scores: {
